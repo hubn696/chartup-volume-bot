@@ -19,11 +19,11 @@ interface SidebarProps {
 }
 
 const navItems: { id: NavItem; label: string; icon: React.ReactNode }[] = [
-  { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
-  { id: "volume", label: "Volume Booster", icon: <Rocket size={18} /> },
-  { id: "dex", label: "DEX Trending", icon: <TrendingUp size={18} /> },
-  { id: "makers", label: "Makers Booster", icon: <Zap size={18} /> },
-  { id: "holders", label: "Holders Booster", icon: <Users size={18} /> },
+  { id: "dashboard", label: "Dashboard", icon: <LayoutDashboard size={16} /> },
+  { id: "volume", label: "Volume Booster", icon: <Rocket size={16} /> },
+  { id: "dex", label: "DEX Trending", icon: <TrendingUp size={16} /> },
+  { id: "makers", label: "Makers Booster", icon: <Zap size={16} /> },
+  { id: "holders", label: "Holders Booster", icon: <Users size={16} /> },
 ];
 
 function WalletPill({ wallet }: { wallet: WalletState }) {
@@ -122,25 +122,25 @@ function WalletPill({ wallet }: { wallet: WalletState }) {
 export function Sidebar({ active, onNav, wallet }: SidebarProps) {
   return (
     <aside
-      className="sidebar-bg flex flex-col w-64 min-h-screen fixed left-0 top-0 bottom-0 z-30"
+      className="sidebar-bg flex flex-col w-52 min-h-screen fixed left-0 top-0 bottom-0 z-30"
       style={{ borderRight: "1px solid oklch(0.23 0.018 195)" }}
     >
       {/* Brand */}
       <div
-        className="flex items-center gap-3 px-6 py-6 border-b"
+        className="flex items-center gap-3 px-4 py-4 border-b"
         style={{ borderColor: "oklch(0.23 0.018 195)" }}
       >
         <div
-          className="flex items-center justify-center w-9 h-9 rounded-lg"
+          className="flex items-center justify-center w-8 h-8 rounded-lg"
           style={{
             background:
               "linear-gradient(135deg, oklch(0.83 0.155 175), oklch(0.65 0.13 175))",
           }}
         >
-          <BarChart3 size={20} style={{ color: "oklch(0.10 0.016 195)" }} />
+          <BarChart3 size={18} style={{ color: "oklch(0.10 0.016 195)" }} />
         </div>
         <span
-          className="text-lg font-bold tracking-widest uppercase"
+          className="text-sm font-bold tracking-widest uppercase"
           style={{ color: "oklch(0.93 0.012 200)" }}
         >
           ChartUp
@@ -148,7 +148,7 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
       </div>
 
       {/* Nav */}
-      <nav className="flex flex-col gap-1 px-3 py-4 flex-1">
+      <nav className="flex flex-col gap-1 px-2 py-3 flex-1">
         {navItems.map((item) => {
           const isActive = active === item.id;
           return (
@@ -157,7 +157,7 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
               type="button"
               data-ocid={`nav.${item.id}.link`}
               onClick={() => onNav(item.id)}
-              className="flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 w-full text-left"
+              className="flex items-center gap-3 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 w-full text-left"
               style={
                 isActive
                   ? {
@@ -194,7 +194,7 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
           target="_blank"
           rel="noopener noreferrer"
           data-ocid="nav.telegram.link"
-          className="flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 mt-2"
+          className="flex items-center gap-3 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 mt-2"
           style={{
             background: "rgba(42,171,238,0.1)",
             border: "1px solid rgba(42,171,238,0.3)",
@@ -213,7 +213,7 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
           }}
         >
           <span style={{ color: "#2AABEE" }}>
-            <Send size={18} />
+            <Send size={16} />
           </span>
           <span>Start Volume Bot</span>
         </a>
@@ -221,14 +221,14 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
 
       {/* Settings */}
       <div
-        className="px-3 pb-2 border-t"
+        className="px-2 pb-2 border-t"
         style={{ borderColor: "oklch(0.23 0.018 195)", paddingTop: "0.75rem" }}
       >
         <button
           type="button"
           data-ocid="nav.settings.link"
           onClick={() => onNav("settings")}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-200 w-full text-left"
+          className="flex items-center gap-3 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 w-full text-left"
           style={
             active === "settings"
               ? {
@@ -246,7 +246,7 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
           }
         >
           <Settings
-            size={18}
+            size={16}
             style={{
               color:
                 active === "settings"
@@ -259,12 +259,12 @@ export function Sidebar({ active, onNav, wallet }: SidebarProps) {
       </div>
 
       {/* Wallet status pill */}
-      <div className="px-3 pb-3">
+      <div className="px-2 pb-3">
         <WalletPill wallet={wallet} />
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-3">
+      <div className="px-4 py-2">
         <p className="text-xs" style={{ color: "oklch(0.40 0.015 200)" }}>
           Solana DEX Tools
         </p>

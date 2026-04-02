@@ -64,7 +64,7 @@ export default function App() {
 
       {/* Main content */}
       <main
-        className="flex-1 ml-64 min-h-screen tech-pattern"
+        className="flex-1 ml-52 min-h-screen tech-pattern"
         style={{ background: "oklch(0.11 0.015 195)" }}
       >
         <div className="max-w-6xl mx-auto px-8 py-8">

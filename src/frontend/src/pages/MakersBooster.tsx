@@ -1,5 +1,5 @@
 import { Slider } from "@/components/ui/slider";
-import { CheckCircle2, Zap } from "lucide-react";
+import { CheckCircle2, Send, Zap } from "lucide-react";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import type { Order } from "../types";
@@ -7,6 +7,8 @@ import type { Order } from "../types";
 interface MakersBoosterProps {
   onOrderCreated: (order: Omit<Order, "id" | "timestamp">) => void;
 }
+
+const TELEGRAM_BOT_URL = "https://t.me/ChartUpSolanaVolume_bot";
 
 export function MakersBooster({ onOrderCreated }: MakersBoosterProps) {
   const [token, setToken] = useState("");
@@ -87,18 +89,33 @@ export function MakersBooster({ onOrderCreated }: MakersBoosterProps) {
                 Intensity: {intensity}% — running on {token.slice(0, 8)}...
               </p>
             </div>
-            <button
-              type="button"
-              data-ocid="makers.primary_button"
-              onClick={() => {
-                setToken("");
-                setIntensity(50);
-                setSubmitted(false);
-              }}
-              className="btn-teal px-6 py-2.5 rounded-lg text-sm"
-            >
-              New Order
-            </button>
+            <div className="flex gap-3 flex-wrap justify-center">
+              <a
+                href={TELEGRAM_BOT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200"
+                style={{
+                  background: "linear-gradient(135deg, #2AABEE, #229ED9)",
+                  color: "#fff",
+                  boxShadow: "0 0 16px rgba(42, 171, 238, 0.4)",
+                }}
+              >
+                <Send size={14} /> Track on Telegram
+              </a>
+              <button
+                type="button"
+                data-ocid="makers.primary_button"
+                onClick={() => {
+                  setToken("");
+                  setIntensity(50);
+                  setSubmitted(false);
+                }}
+                className="btn-teal px-6 py-2.5 rounded-lg text-sm"
+              >
+                New Order
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -111,6 +128,63 @@ export function MakersBooster({ onOrderCreated }: MakersBoosterProps) {
         title="Makers Booster"
         subtitle="Increase unique makers for your token"
       />
+
+      {/* Telegram Bot Banner */}
+      <div className="max-w-2xl mx-auto mb-5">
+        <a
+          href={TELEGRAM_BOT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ocid="makers.telegram_banner"
+          className="flex items-center justify-between px-5 py-3.5 rounded-xl transition-all duration-200 group"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(42,171,238,0.12), rgba(34,158,217,0.06))",
+            border: "1px solid rgba(42,171,238,0.35)",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+              "0 0 20px rgba(42,171,238,0.25)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: "rgba(42,171,238,0.2)" }}
+            >
+              <Send size={15} style={{ color: "#2AABEE" }} />
+            </div>
+            <div>
+              <span
+                className="text-sm font-semibold block"
+                style={{ color: "oklch(0.93 0.012 200)" }}
+              >
+                ChartUp Solana Volume Bot
+              </span>
+              <span
+                className="text-xs"
+                style={{ color: "oklch(0.50 0.020 200)" }}
+              >
+                @ChartUpSolanaVolume_bot — Start boosting directly on Telegram
+              </span>
+            </div>
+          </div>
+          <span
+            className="text-xs font-medium px-3 py-1.5 rounded-lg flex-shrink-0 ml-4 group-hover:opacity-100 transition-opacity"
+            style={{
+              background: "rgba(42,171,238,0.2)",
+              color: "#2AABEE",
+              border: "1px solid rgba(42,171,238,0.4)",
+            }}
+          >
+            Open Bot ↗
+          </span>
+        </a>
+      </div>
+
       <div className="max-w-2xl mx-auto">
         <div className="panel-modal p-8 space-y-6">
           <div className="flex items-center gap-3 mb-2">
